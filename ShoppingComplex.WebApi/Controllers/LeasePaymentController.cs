@@ -64,6 +64,20 @@ namespace ShoppingComplex.WebApi.Controllers
             }
             return Ok(deletedLeasePaymentId);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LeasePaymentDto>>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var leasePayments = await _leasePaymentService.GetLeasePaymentsByDateRange(startDate, endDate);
+            return Ok(leasePayments);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<PagedDataResponse<LeasePaymentDto>>> GetPagedLeasePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
+        {
+            var leasePayments = await _leasePaymentService.GetPagedLeasePaymentsByDateRange(startDate, endDate, currentPage, pageSize);
+            return Ok(leasePayments);
+        }
     }
 
 }

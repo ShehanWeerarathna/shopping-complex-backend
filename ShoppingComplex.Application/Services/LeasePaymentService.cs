@@ -86,6 +86,12 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        public async Task<List<LeasePaymentDto>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var leasePayments = await _leasePaymentRepository.GetLeasePaymentsByDateRange(startDate, endDate);
+            return _mapper.Map<List<LeasePaymentDto>>(leasePayments);
+        }
+
         public async Task<LeasePaymentDto> UpdateLeasePaymentAsync(LeasePaymentDto leasePayment)
         {
             var dbLeasePayment = await _leasePaymentRepository.GetLeasePaymentByIdAsync(leasePayment.LeasePaymentId);
@@ -99,6 +105,22 @@ namespace ShoppingComplex.Application.Services
                 dbLeasePayment.Amount = leasePayment.Amount;
                 var updatedLeasePayment = await _leasePaymentRepository.UpdateLeasePaymentAsync(dbLeasePayment);
                 return _mapper.Map<LeasePaymentDto>(updatedLeasePayment);
+            }
+        }
+
+        public async Task<PagedDataResponse<LeasePaymentDto>> GetPagedLeasePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
+        {
+            try
+            {
+                var leasePayments = await _leasePaymentRepository.GetLeasePaymentsByDateRange(startDate, endDate);
+                var leasePaymentDtos = _mapper.Map<List<LeasePaymentDto>>(leasePayments);
+                var pagedLeasePayments = leasePaymentDtos.GetPaged(currentPage, pageSize);
+
+                return pagedLeasePayments;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

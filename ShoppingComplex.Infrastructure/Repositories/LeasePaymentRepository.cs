@@ -88,6 +88,23 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public async Task<List<LeasePayment>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var leasePayments = await _context.LeasePayments
+                    .Include(lp => lp.LeaseAgreement)
+                    .ThenInclude(la => la.Store)
+                    .Where(lp => lp.PaymentDate >= startDate && lp.PaymentDate <= endDate)
+                    .ToListAsync();
+                return leasePayments;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }

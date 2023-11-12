@@ -14,5 +14,6 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         Task<LeasePayment> CreateLeasePaymentAsync(LeasePayment leasePayment);
         Task<LeasePayment> UpdateLeasePaymentAsync(LeasePayment leasePayment);
         Task<int> DeleteLeasePaymentAsync(int id);
+        Task<List<LeasePayment>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate);
     }
 }

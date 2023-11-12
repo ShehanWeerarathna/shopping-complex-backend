@@ -15,5 +15,7 @@ namespace ShoppingComplex.Application.Services.Interfaces
         Task<LeasePaymentDto> CreateLeasePaymentAsync(LeasePaymentDto leasePayment);
         Task<LeasePaymentDto> UpdateLeasePaymentAsync(LeasePaymentDto leasePayment);
         Task<int> DeleteLeasePaymentAsync(int id);
+        Task<List<LeasePaymentDto>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate);
+        Task<PagedDataResponse<LeasePaymentDto>> GetPagedLeasePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize);
     }
 }
