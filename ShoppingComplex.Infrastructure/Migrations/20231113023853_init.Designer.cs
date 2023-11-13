@@ -12,8 +12,8 @@ using ShoppingComplex.Infrastructure.Data;
 namespace ShoppingComplex.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231111150315_leasePayment")]
-    partial class leasePayment
+    [Migration("20231113023853_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

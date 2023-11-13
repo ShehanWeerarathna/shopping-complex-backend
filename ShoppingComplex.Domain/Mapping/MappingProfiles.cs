@@ -12,6 +12,8 @@ namespace ShoppingComplex.Domain.Mapping
             CreateMap<StoreDto, Store>().ReverseMap();
             CreateMap<LeaseAgreementDto, LeaseAgreement>().ReverseMap();
             CreateMap<LeasePaymentDto, LeasePayment>().ReverseMap();
+            CreateMap<MaintenanceContractDto, MaintenanceContract>().ReverseMap();
+            CreateMap<MaintenancePaymentDto, MaintenancePayment>().ReverseMap();
         }
     }
 }

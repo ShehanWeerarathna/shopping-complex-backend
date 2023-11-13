@@ -15,6 +15,8 @@ namespace ShoppingComplex.Domain.Entities
         // Navigation properties
         public Category Category { get; set; }
         public int? LeaseAgreementId { get; set; }
-        public LeaseAgreement LeaseAgreement { get; set; }
+        public int? MaintenanceContractId { get; set; }
+        public LeaseAgreement? LeaseAgreement { get; set; }
+        public MaintenanceContract? MaintenanceContract { get; set; }
     }
 }

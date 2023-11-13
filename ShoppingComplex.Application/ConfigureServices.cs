@@ -13,6 +13,8 @@ namespace ShoppingComplex.Application
             services.AddScoped<IStoreService, StoreService>();
             services.AddScoped<ILeaseAgreementService, LeaseAgreementService>();
             services.AddScoped<ILeasePaymentService, LeasePaymentService>();
+            services.AddScoped<IMaintenanceContractService, MaintenanceContractService>();
+            services.AddScoped<IMaintenancePaymentService, MaintenancePaymentService>();
 
             return services;
         }

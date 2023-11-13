@@ -22,7 +22,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
 
         public async Task<List<LeaseAgreement>> GetLeaseAgreementsAsync(int? storeId)
         {
-            IQueryable<LeaseAgreement> query = _context.LeaseAgreements.FilterByStoreId(storeId);
+            IQueryable<LeaseAgreement> query = _context.LeaseAgreements.FilterLeaseAgreementByStoreId(storeId);
             List<LeaseAgreement> leaseAgreements = await query.Include(l => l.Store).ToListAsync();
             return leaseAgreements;
         }

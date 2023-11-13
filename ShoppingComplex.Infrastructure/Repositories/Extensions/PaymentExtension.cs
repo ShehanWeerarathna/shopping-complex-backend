@@ -16,5 +16,13 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 
             return payments;
         }
+
+        public static IQueryable<MaintenancePayment> FilterByMaintenanceContractId(this IQueryable<MaintenancePayment> payments, int? maintenanceContractId)
+        {
+            if (maintenanceContractId.HasValue && maintenanceContractId != 0)
+                return payments.Where(p => p.MaintenanceContractId == maintenanceContractId);
+
+            return payments;
+        }
     }
 }

@@ -9,12 +9,12 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 {
     internal static class LeaseAgreementExtension
     {
-        public static IQueryable<LeaseAgreement> FilterByStoreId(this IQueryable<LeaseAgreement> leaseAgreements, int? storeId)
-        {
-            if (storeId.HasValue && storeId != 0)
-                return leaseAgreements.Where(l => l.StoreId == storeId);
+            public static IQueryable<LeaseAgreement> FilterLeaseAgreementByStoreId(this IQueryable<LeaseAgreement> leaseAgreements, int? storeId)
+            {
+                if (storeId.HasValue && storeId != 0)
+                    return leaseAgreements.Where(l => l.StoreId == storeId);
 
-            return leaseAgreements;
-        }
+                return leaseAgreements;
+            }
     }
 }

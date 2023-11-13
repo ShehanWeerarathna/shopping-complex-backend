@@ -121,6 +121,18 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 throw;
             }
         }
+        public async Task<Store> GetStoreByMaintenanceContractIdAsync(int id)
+        {
+            try
+            {
+                var store = await _context.Stores.FirstOrDefaultAsync(s => s.MaintenanceContractId == id);
+                return store;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }

@@ -16,8 +16,9 @@ namespace ShoppingComplex.Infrastructure
             services.AddScoped<IStoreRepository, StoreRepository>();
             services.AddScoped<ILeaseAgreementRepository, LeaseAgreementRepository>();
             services.AddScoped<ILeasePaymentRepository, LeasePaymentRepository>();
+            services.AddScoped<IMaintenanceContractRepository, MaintenanceContractRepository>();
+            services.AddScoped<IMaintenancePaymentRepository, MaintenancePaymentRepository>();
 
-            
             return services;
         }
     }

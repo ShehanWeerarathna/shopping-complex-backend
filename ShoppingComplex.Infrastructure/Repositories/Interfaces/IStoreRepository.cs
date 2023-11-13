@@ -16,5 +16,6 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         Task<int> DeleteStoreAsync(int id);
         Task<List<Category>> GetCategoriesAsync();
         Task<Store> GetStoreByLeaseAgreementIdAsync(int id);
+        Task<Store> GetStoreByMaintenanceContractIdAsync(int id);
     }
 }
