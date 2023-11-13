@@ -12,8 +12,8 @@ using ShoppingComplex.Infrastructure.Data;
 namespace ShoppingComplex.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231113023853_init")]
-    partial class init
+    [Migration("20231113052808_MaintenanceContract")]
+    partial class MaintenanceContract
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,6 +90,55 @@ namespace ShoppingComplex.Infrastructure.Migrations
                     b.ToTable("LeasePayments");
                 });
 
+            modelBuilder.Entity("ShoppingComplex.Domain.Entities.MaintenanceContract", b =>
+                {
+                    b.Property<int>("MaintenanceContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenanceContractId"), 1L, 1);
+
+                    b.Property<decimal>("ContractAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ContractEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ContractStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaintenanceContractId");
+
+                    b.ToTable("MaintenanceContracts");
+                });
+
+            modelBuilder.Entity("ShoppingComplex.Domain.Entities.MaintenancePayment", b =>
+                {
+                    b.Property<int>("MaintenancePaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenancePaymentId"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("MaintenanceContractId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MaintenancePaymentId");
+
+                    b.HasIndex("MaintenanceContractId");
+
+                    b.ToTable("MaintenancePayments");
+                });
+
             modelBuilder.Entity("ShoppingComplex.Domain.Entities.Store", b =>
                 {
                     b.Property<int>("StoreId")
@@ -104,6 +153,9 @@ namespace ShoppingComplex.Infrastructure.Migrations
                     b.Property<int?>("LeaseAgreementId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MaintenanceContractId")
+                        .HasColumnType("int");
+
                     b.Property<string>("StoreName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -115,6 +167,10 @@ namespace ShoppingComplex.Infrastructure.Migrations
                     b.HasIndex("LeaseAgreementId")
                         .IsUnique()
                         .HasFilter("[LeaseAgreementId] IS NOT NULL");
+
+                    b.HasIndex("MaintenanceContractId")
+                        .IsUnique()
+                        .HasFilter("[MaintenanceContractId] IS NOT NULL");
 
                     b.ToTable("Stores");
                 });
@@ -130,6 +186,17 @@ namespace ShoppingComplex.Infrastructure.Migrations
                     b.Navigation("LeaseAgreement");
                 });
 
+            modelBuilder.Entity("ShoppingComplex.Domain.Entities.MaintenancePayment", b =>
+                {
+                    b.HasOne("ShoppingComplex.Domain.Entities.MaintenanceContract", "MaintenanceContract")
+                        .WithMany("MaintenancePayments")
+                        .HasForeignKey("MaintenanceContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MaintenanceContract");
+                });
+
             modelBuilder.Entity("ShoppingComplex.Domain.Entities.Store", b =>
                 {
                     b.HasOne("ShoppingComplex.Domain.Entities.Category", "Category")
@@ -143,9 +210,16 @@ namespace ShoppingComplex.Infrastructure.Migrations
                         .HasForeignKey("ShoppingComplex.Domain.Entities.Store", "LeaseAgreementId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("ShoppingComplex.Domain.Entities.MaintenanceContract", "MaintenanceContract")
+                        .WithOne("Store")
+                        .HasForeignKey("ShoppingComplex.Domain.Entities.Store", "MaintenanceContractId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("Category");
 
                     b.Navigation("LeaseAgreement");
+
+                    b.Navigation("MaintenanceContract");
                 });
 
             modelBuilder.Entity("ShoppingComplex.Domain.Entities.Category", b =>
@@ -156,6 +230,14 @@ namespace ShoppingComplex.Infrastructure.Migrations
             modelBuilder.Entity("ShoppingComplex.Domain.Entities.LeaseAgreement", b =>
                 {
                     b.Navigation("LeasePayments");
+
+                    b.Navigation("Store")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ShoppingComplex.Domain.Entities.MaintenanceContract", b =>
+                {
+                    b.Navigation("MaintenancePayments");
 
                     b.Navigation("Store")
                         .IsRequired();

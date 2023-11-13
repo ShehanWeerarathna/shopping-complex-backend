@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoppingComplex.Infrastructure.Migrations
 {
-    public partial class init : Migration
+    public partial class MaintenanceContract : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,6 +39,22 @@ namespace ShoppingComplex.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MaintenanceContracts",
+                columns: table => new
+                {
+                    MaintenanceContractId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StoreId = table.Column<int>(type: "int", nullable: false),
+                    ContractStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContractAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaintenanceContracts", x => x.MaintenanceContractId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LeasePayments",
                 columns: table => new
                 {
@@ -60,6 +76,27 @@ namespace ShoppingComplex.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MaintenancePayments",
+                columns: table => new
+                {
+                    MaintenancePaymentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaintenanceContractId = table.Column<int>(type: "int", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaintenancePayments", x => x.MaintenancePaymentId);
+                    table.ForeignKey(
+                        name: "FK_MaintenancePayments_MaintenanceContracts_MaintenanceContractId",
+                        column: x => x.MaintenanceContractId,
+                        principalTable: "MaintenanceContracts",
+                        principalColumn: "MaintenanceContractId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Stores",
                 columns: table => new
                 {
@@ -67,7 +104,8 @@ namespace ShoppingComplex.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StoreName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    LeaseAgreementId = table.Column<int>(type: "int", nullable: true)
+                    LeaseAgreementId = table.Column<int>(type: "int", nullable: true),
+                    MaintenanceContractId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,12 +122,23 @@ namespace ShoppingComplex.Infrastructure.Migrations
                         principalTable: "LeaseAgreements",
                         principalColumn: "LeaseAgreementId",
                         onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Stores_MaintenanceContracts_MaintenanceContractId",
+                        column: x => x.MaintenanceContractId,
+                        principalTable: "MaintenanceContracts",
+                        principalColumn: "MaintenanceContractId",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeasePayments_LeaseAgreementId",
                 table: "LeasePayments",
                 column: "LeaseAgreementId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MaintenancePayments_MaintenanceContractId",
+                table: "MaintenancePayments",
+                column: "MaintenanceContractId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stores_CategoryId",
@@ -102,12 +151,22 @@ namespace ShoppingComplex.Infrastructure.Migrations
                 column: "LeaseAgreementId",
                 unique: true,
                 filter: "[LeaseAgreementId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stores_MaintenanceContractId",
+                table: "Stores",
+                column: "MaintenanceContractId",
+                unique: true,
+                filter: "[MaintenanceContractId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "LeasePayments");
+
+            migrationBuilder.DropTable(
+                name: "MaintenancePayments");
 
             migrationBuilder.DropTable(
                 name: "Stores");
@@ -117,6 +176,9 @@ namespace ShoppingComplex.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "LeaseAgreements");
+
+            migrationBuilder.DropTable(
+                name: "MaintenanceContracts");
         }
     }
 }

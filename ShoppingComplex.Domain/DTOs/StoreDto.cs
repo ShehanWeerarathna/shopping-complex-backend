@@ -14,6 +14,8 @@ namespace ShoppingComplex.Domain.DTOs
         public int CategoryId { get; set; }
         public CategoryDto? Category { get; set; }
         public int? LeaseAgreementId { get; set; }
+        public int? MaintenanceContractId { get; set; }
         public LeaseAgreementDto? LeaseAgreement { get; set; }
+        public MaintenanceContractDto? MaintenanceContract { get; set; }
     }
 }
