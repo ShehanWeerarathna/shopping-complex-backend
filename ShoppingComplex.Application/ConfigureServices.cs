@@ -15,6 +15,7 @@ namespace ShoppingComplex.Application
             services.AddScoped<ILeasePaymentService, LeasePaymentService>();
             services.AddScoped<IMaintenanceContractService, MaintenanceContractService>();
             services.AddScoped<IMaintenancePaymentService, MaintenancePaymentService>();
+            services.AddScoped<IFinancialReportService, FinancialReportService>();
 
             return services;
         }
