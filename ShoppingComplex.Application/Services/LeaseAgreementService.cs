@@ -44,13 +44,6 @@ namespace ShoppingComplex.Application.Services
             try
             {
                 var response = await _leaseAgreementRepository.DeleteLeaseAgreementAsync(id);
-                // update store lease agreement id
-                if(response != 0)
-                {
-                    var store = await _storeRepository.GetStoreByLeaseAgreementIdAsync(id);
-                    store.LeaseAgreementId = null;
-                    await _storeRepository.UpdateStoreAsync(store);
-                }
                 return response;
             }
             catch (Exception)
