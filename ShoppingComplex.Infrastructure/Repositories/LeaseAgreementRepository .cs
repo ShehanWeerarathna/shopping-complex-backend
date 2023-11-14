@@ -86,8 +86,10 @@ namespace ShoppingComplex.Infrastructure.Repositories
         {
             try
             {
-                var leaseAgreement = _context.LeaseAgreements.FirstOrDefault(l => l.LeaseAgreementId == id);
-                if (leaseAgreement != null)
+                var leaseAgreement = _context.LeaseAgreements
+                    .Include(l => l.LeasePayments)
+                    .FirstOrDefault(l => l.LeaseAgreementId == id);
+                if (leaseAgreement != null && leaseAgreement.LeasePayments.Count==0)
                 {
                     _context.LeaseAgreements.Remove(leaseAgreement);
                     return await _context.SaveChangesAsync();

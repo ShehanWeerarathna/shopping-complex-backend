@@ -82,8 +82,9 @@ namespace ShoppingComplex.Infrastructure.Repositories
         {
             try
             {
-                var store = _context.Stores.FirstOrDefault(s => s.StoreId == id);
-                if (store != null)
+                var store = _context.Stores
+                    .FirstOrDefault(s => s.StoreId == id);
+                if (store != null && store.MaintenanceContractId == null && store.LeaseAgreementId == null)
                 {
                     _context.Stores.Remove(store);
                     return await _context.SaveChangesAsync();

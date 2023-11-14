@@ -48,12 +48,16 @@ namespace ShoppingComplex.Application.Services
         {
             try
             {
-                // update store maintenance contract id
-                var store = await _storeRepository.GetStoreByMaintenanceContractIdAsync(id);
-                store.MaintenanceContractId = null;
-                await _storeRepository.UpdateStoreAsync(store);
                 var response = await _maintenanceContractRepository.DeleteMaintenanceContractAsync(id);
+                // update store maintenance contract id
 
+                if(response != 0)
+                {
+                    var store = await _storeRepository.GetStoreByMaintenanceContractIdAsync(id);
+                    store.MaintenanceContractId = null;
+                    await _storeRepository.UpdateStoreAsync(store);
+
+                }
                 return response;
             }
             catch (Exception)

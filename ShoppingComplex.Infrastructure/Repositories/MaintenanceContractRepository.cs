@@ -86,8 +86,10 @@ namespace ShoppingComplex.Infrastructure.Repositories
         {
             try
             {
-                var maintenanceContract = _context.MaintenanceContracts.FirstOrDefault(m => m.MaintenanceContractId == id);
-                if (maintenanceContract != null)
+                var maintenanceContract = _context.MaintenanceContracts.
+                    Include(m => m.MaintenancePayments)
+                    .FirstOrDefault(m => m.MaintenanceContractId == id);
+                if (maintenanceContract != null && maintenanceContract.MaintenancePayments.Count == 0)
                 {
                     _context.MaintenanceContracts.Remove(maintenanceContract);
                     return await _context.SaveChangesAsync();
