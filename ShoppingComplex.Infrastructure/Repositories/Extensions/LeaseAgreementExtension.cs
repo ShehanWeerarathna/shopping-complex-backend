@@ -9,6 +9,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 {
     internal static class LeaseAgreementExtension
     {
+        // Filter by StoreId
             public static IQueryable<LeaseAgreement> FilterLeaseAgreementByStoreId(this IQueryable<LeaseAgreement> leaseAgreements, int? storeId)
             {
                 if (storeId.HasValue && storeId != 0)

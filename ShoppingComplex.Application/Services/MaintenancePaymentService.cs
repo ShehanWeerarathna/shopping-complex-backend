@@ -24,6 +24,7 @@ namespace ShoppingComplex.Application.Services
             _mapper = mapper;
         }
 
+        // Create Maintenance Payment
         public async Task<MaintenancePaymentDto> CreateMaintenancePaymentAsync(MaintenancePaymentDto maintenancePayment)
         {
             try
@@ -38,6 +39,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Delete Maintenance Payment
         public async Task<int> DeleteMaintenancePaymentAsync(int id)
         {
             try
@@ -51,6 +53,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Maintenance Payment by id
         public async Task<MaintenancePaymentDto> GetMaintenancePaymentByIdAsync(int id)
         {
             var maintenancePayment = await _maintenancePaymentRepository.GetMaintenancePaymentByIdAsync(id);
@@ -70,6 +73,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get all Maintenance Payments
         public async Task<PagedDataResponse<MaintenancePaymentDto>> GetMaintenancePaymentsAsync(int? currentPage, int? pageSize, int? maintenanceContractId)
         {
             try
@@ -86,12 +90,14 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Maintenance Payments by storeId
         public async Task<List<MaintenancePaymentDto>> GetMaintenancePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
             var maintenancePayments = await _maintenancePaymentRepository.GetMaintenancePaymentsByDateRange(startDate, endDate);
             return _mapper.Map<List<MaintenancePaymentDto>>(maintenancePayments);
         }
 
+        // Update Maintenance Payment
         public async Task<MaintenancePaymentDto> UpdateMaintenancePaymentAsync(MaintenancePaymentDto maintenancePayment)
         {
             var dbMaintenancePayment = await _maintenancePaymentRepository.GetMaintenancePaymentByIdAsync(maintenancePayment.MaintenancePaymentId);
@@ -108,6 +114,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Maintenance Payments by storeId
         public async Task<PagedDataResponse<MaintenancePaymentDto>> GetPagedMaintenancePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
         {
             try

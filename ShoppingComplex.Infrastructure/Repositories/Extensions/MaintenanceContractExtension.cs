@@ -9,6 +9,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 {
     internal static class MaintenanceContractExtension
     {
+        // Filter by StoreId
         public static IQueryable<MaintenanceContract> FilterMaintenanceContractByStoreId(this IQueryable<MaintenanceContract> maintenanceContracts, int? storeId)
         {
             if (storeId.HasValue && storeId != 0)

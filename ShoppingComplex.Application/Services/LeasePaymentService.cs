@@ -24,6 +24,7 @@ namespace ShoppingComplex.Application.Services
             _mapper = mapper;
         }
 
+        // Create Lease Payment
         public async Task<LeasePaymentDto> CreateLeasePaymentAsync(LeasePaymentDto leasePayment)
         {
             try
@@ -38,6 +39,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Delete Lease Payment
         public async Task<int> DeleteLeasePaymentAsync(int id)
         {
             try
@@ -51,6 +53,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Lease Payment by id
         public async Task<LeasePaymentDto> GetLeasePaymentByIdAsync(int id)
         {
             var leasePayment = await _leasePaymentRepository.GetLeasePaymentByIdAsync(id);
@@ -70,6 +73,7 @@ namespace ShoppingComplex.Application.Services
             
         }
 
+        // Get all Lease Payments
         public async Task<PagedDataResponse<LeasePaymentDto>> GetLeasePaymentsAsync( int? currentPage, int? pageSize, int? leaseAgreementId)
         {
             try
@@ -86,12 +90,14 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Lease Payments by storeId
         public async Task<List<LeasePaymentDto>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
             var leasePayments = await _leasePaymentRepository.GetLeasePaymentsByDateRange(startDate, endDate);
             return _mapper.Map<List<LeasePaymentDto>>(leasePayments);
         }
 
+        // Update Lease Payment
         public async Task<LeasePaymentDto> UpdateLeasePaymentAsync(LeasePaymentDto leasePayment)
         {
             var dbLeasePayment = await _leasePaymentRepository.GetLeasePaymentByIdAsync(leasePayment.LeasePaymentId);
@@ -107,7 +113,7 @@ namespace ShoppingComplex.Application.Services
                 return _mapper.Map<LeasePaymentDto>(updatedLeasePayment);
             }
         }
-
+        // Get Lease Payments by storeId
         public async Task<PagedDataResponse<LeasePaymentDto>> GetPagedLeasePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
         {
             try

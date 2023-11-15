@@ -20,6 +20,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             _context = context;
         }
 
+        // Get all maintenance contracts
         public async Task<List<MaintenanceContract>> GetMaintenanceContractsAsync(int? storeId)
         {
             IQueryable<MaintenanceContract> query = _context.MaintenanceContracts.FilterMaintenanceContractByStoreId(storeId);
@@ -27,6 +28,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             return maintenanceContracts;
         }
 
+        // Get maintenance contract by id
         public async Task<MaintenanceContract?> GetMaintenanceContractByIdAsync(int id)
         {
             try
@@ -43,6 +45,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Create maintenance contract
         public async Task<MaintenanceContract> CreateMaintenanceContractAsync(MaintenanceContract maintenanceContract)
         {
             try
@@ -68,6 +71,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Update maintenance contract
         public async Task<MaintenanceContract> UpdateMaintenanceContractAsync(MaintenanceContract maintenanceContract)
         {
             try
@@ -82,6 +86,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Delete maintenance contract
         public async Task<int> DeleteMaintenanceContractAsync(int id)
         {
             try
@@ -102,6 +107,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Get maintenance contract by storeId
         public async Task<MaintenanceContract?> GetMaintenanceContractByStoreIdAsync(int storeId)
         {
             try

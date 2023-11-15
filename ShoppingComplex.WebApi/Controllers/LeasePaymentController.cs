@@ -17,6 +17,7 @@ namespace ShoppingComplex.WebApi.Controllers
             _leasePaymentService = leasePaymentService;
         }
 
+        // Get all lease payments
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<LeasePaymentDto>>> GetLeasePaymentsAsync(int? currentPage, int? pageSize, int? leaseAgreementId)
         {
@@ -24,6 +25,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(leasePayments);
         }
 
+        // Get lease payment by id
         [HttpGet("{id}")]
         public async Task<ActionResult<LeasePaymentDto>> GetLeasePaymentByIdAsync(int id)
         {
@@ -35,6 +37,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(leasePayment);
         }
 
+        // Create a new lease payment
         [HttpPost]
         public async Task<ActionResult<LeasePaymentDto>> CreateLeasePaymentAsync(LeasePaymentDto leasePayment)
         {
@@ -42,6 +45,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return createdLeasePayment;
         }
 
+        // Update lease payment
         [HttpPut("{id}")]
         public async Task<ActionResult<LeasePaymentDto>> UpdateLeasePaymentAsync(int id, LeasePaymentDto leasePayment)
         {
@@ -54,6 +58,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(updatedLeasePayment);
         }
 
+        // Delete lease payment
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteLeasePaymentAsync(int id)
         {
@@ -65,6 +70,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(deletedLeasePaymentId);
         }
 
+        // Get lease payments by date range
         [HttpGet]
         public async Task<ActionResult<List<LeasePaymentDto>>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
@@ -72,6 +78,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(leasePayments);
         }
 
+        // Get paged lease payments by date range
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<LeasePaymentDto>>> GetPagedLeasePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
         {

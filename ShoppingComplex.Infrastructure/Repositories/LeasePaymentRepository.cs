@@ -20,6 +20,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             _context = context;
         }
 
+        // Get all LeasePayments
         public async Task<List<LeasePayment>> GetLeasePaymentsAsync(int? leaseAgreementId)
         {
             IQueryable<LeasePayment> query = _context.LeasePayments.FilterByLeaseAgreementId(leaseAgreementId);
@@ -27,6 +28,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             return leasePayments;
         }
 
+        // Get LeasePayment by id
         public async Task<LeasePayment> GetLeasePaymentByIdAsync(int id)
         {
             try
@@ -44,6 +46,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Create LeasePayment
         public async Task<LeasePayment> CreateLeasePaymentAsync(LeasePayment leasePayment)
         {
             try
@@ -58,6 +61,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Update LeasePayment
         public async Task<LeasePayment> UpdateLeasePaymentAsync(LeasePayment leasePayment)
         {
             try
@@ -72,6 +76,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Delete LeasePayment
         public async Task<int> DeleteLeasePaymentAsync(int id)
         {
             try
@@ -90,6 +95,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Get LeasePayments by storeId
         public async Task<List<LeasePayment>> GetLeasePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
             try

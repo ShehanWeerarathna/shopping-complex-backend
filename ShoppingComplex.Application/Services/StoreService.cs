@@ -20,6 +20,7 @@ namespace ShoppingComplex.Application.Services
             _mapper = mapper;
         }
 
+        // Create a new store
         public async Task<StoreDto> CreateStoreAsync(StoreDto store)
         {
             try
@@ -35,6 +36,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Delete store
         public async Task<int> DeleteStoreAsync(int id)
         {
             try
@@ -48,6 +50,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get store by id
         public async Task<List<CategoryDto>> GetCategoriesAsync()
         {
             try
@@ -61,6 +64,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get store by id
         public async Task<StoreDto> GetStoreByIdAsync(int id)
         {
             if(id == 0)
@@ -77,6 +81,7 @@ namespace ShoppingComplex.Application.Services
             return _mapper.Map<StoreDto>(store);
         }
 
+        // Get all stores
         public async Task<PagedDataResponse<StoreDto>> GetStoresAsync(string? searchTerm, int? currentPage, int? pageSize, int? categoryId)
         {
             try
@@ -93,6 +98,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Update store
         public async Task<StoreDto> UpdateStoreAsync(StoreDto store)
         {
             var dbStore = await _storeRepository.GetStoreByIdAsync(store.StoreId);

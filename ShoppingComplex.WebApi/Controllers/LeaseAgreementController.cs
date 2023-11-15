@@ -17,6 +17,7 @@ namespace ShoppingComplex.WebApi.Controllers
             _leaseAgreementService = leaseAgreementService;
         }
 
+        // Get all lease agreements
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<LeaseAgreementDto>>> GetLeaseAgreementsAsync(int? currentPage, int? pageSize, int? storeId)
         {
@@ -24,6 +25,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(leaseAgreements);
         }
 
+        // Get lease agreement by id
         [HttpGet("{id}")]
         public async Task<ActionResult<LeaseAgreementDto>> GetLeaseAgreementByIdAsync(int id)
         {
@@ -35,6 +37,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(leaseAgreement);
         }
 
+        // Create a new lease agreement
         [HttpPost]
         public async Task<ActionResult<LeaseAgreementDto>> CreateLeaseAgreementAsync(LeaseAgreementDto leaseAgreement)
         {
@@ -42,6 +45,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return createdLeaseAgreement;
         }
 
+        // Update lease agreement
         [HttpPut("{id}")]
         public async Task<ActionResult<LeaseAgreementDto>> UpdateLeaseAgreementAsync(int id, LeaseAgreementDto leaseAgreement)
         {
@@ -54,6 +58,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(updatedLeaseAgreement);
         }
 
+        // Delete lease agreement
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteLeaseAgreementAsync(int id)
         {
@@ -65,6 +70,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(deletedLeaseAgreementId);
         }
 
+        // Get lease agreement by store id
         [HttpGet("{storeId}")]
         public async Task<ActionResult<LeaseAgreementDto>> GetLeaseAgreementByStoreIdAsync(int storeId)
         {

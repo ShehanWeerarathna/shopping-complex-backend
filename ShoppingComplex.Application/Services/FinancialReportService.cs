@@ -23,7 +23,7 @@ namespace ShoppingComplex.Application.Services
 
 
 
-
+        // Get Financial Report
         public async Task<FinancialReportDto> GetFinancialReportAsync(DateTime startDate, DateTime endDate)
         {
             var leasePayments = await _leasePaymentRepository.GetLeasePaymentsByDateRange(startDate, endDate);

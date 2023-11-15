@@ -9,6 +9,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 {
     internal static class StoreExtension
     {
+        // Search by StoreName
         public static IQueryable<Store> SearchStore(this IQueryable<Store> stores, string? name)
         {
             if (string.IsNullOrWhiteSpace(name))

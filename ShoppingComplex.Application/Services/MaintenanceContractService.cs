@@ -26,6 +26,7 @@ namespace ShoppingComplex.Application.Services
             _storeRepository = storeRepository;
         }
 
+        // Create Maintenance Contract
         public async Task<MaintenanceContractDto> CreateMaintenanceContractAsync(MaintenanceContractDto maintenanceContract)
         {
             try
@@ -44,6 +45,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Delete Maintenance Contract
         public async Task<int> DeleteMaintenanceContractAsync(int id)
         {
             try
@@ -57,12 +59,14 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Maintenance Contract by id
         public async Task<MaintenanceContractDto> GetMaintenanceContractByIdAsync(int id)
         {
             var maintenanceContract = await _maintenanceContractRepository.GetMaintenanceContractByIdAsync(id);
             return _mapper.Map<MaintenanceContractDto>(maintenanceContract);
         }
 
+        // Get all Maintenance Contracts
         public async Task<PagedDataResponse<MaintenanceContractDto>> GetMaintenanceContractsAsync(int? currentPage, int? pageSize, int? storeId)
         {
             try
@@ -78,6 +82,8 @@ namespace ShoppingComplex.Application.Services
                 throw;
             }
         }
+
+        // Update Maintenance Contract
 
         public async Task<MaintenanceContractDto> UpdateMaintenanceContractAsync(MaintenanceContractDto maintenanceContract)
         {
@@ -100,6 +106,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get Maintenance Contract by storeId
         public async Task<MaintenanceContractDto> GetMaintenanceContractByStoreIdAsync(int storeId)
         {
             var maintenanceContract = await _maintenanceContractRepository.GetMaintenanceContractByStoreIdAsync(storeId);

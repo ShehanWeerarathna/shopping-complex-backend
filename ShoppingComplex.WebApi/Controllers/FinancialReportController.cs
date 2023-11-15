@@ -16,6 +16,7 @@ namespace ShoppingComplex.WebApi.Controllers
             _financialReportService = financialReportService;
         }
 
+        // Get financial report
         [HttpGet]
         public async Task<ActionResult<FinancialReportDto>> GetFinancialReportAsync(DateTime startDate, DateTime endDate)
         {

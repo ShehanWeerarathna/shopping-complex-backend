@@ -26,8 +26,14 @@ namespace ShoppingComplex.Infrastructure.Data
 
             // Add initial data to the Category table
             modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 1, CategoryName = "Electronics" },
-                new Category { CategoryId = 2, CategoryName = "Clothing" }
+                new Category { CategoryId = 1, CategoryName = "Beauty" },
+                new Category { CategoryId = 2, CategoryName = "Book & Stationery" },
+                new Category { CategoryId = 3, CategoryName = "Children’s Products" },
+                new Category { CategoryId = 4, CategoryName = "Food & Drink" },
+                new Category { CategoryId = 5, CategoryName = "Homeware" },
+                new Category { CategoryId = 6, CategoryName = "Jewellery & Watches" },
+                new Category { CategoryId = 7, CategoryName = "Men’s & Women’s Shoes" },
+                new Category { CategoryId = 8, CategoryName = "Technology" }
             );
             // Configure relationships
             modelBuilder.Entity<Category>()

@@ -20,6 +20,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             _context = context;
         }
 
+        // Get all stores
         public async Task<List<Store>> GetStoresAsync(string? searchTerm, int? categoryId)
         {
             IQueryable<Store> query = _context.Stores.SearchStore(searchTerm);
@@ -33,6 +34,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             return stores;
         }
 
+        // Get store by id
         public async Task<Store?> GetStoreByIdAsync(int id)
         {
             try
@@ -49,6 +51,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Create store
         public async Task<Store> CreateStoreAsync(Store store)
         {
             try
@@ -63,6 +66,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Update store
         public async Task<Store> UpdateStoreAsync(Store store)
         {
             try
@@ -78,6 +82,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Delete store
         public async Task<int> DeleteStoreAsync(int id)
         {
             try
@@ -97,6 +102,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Get categories
         public async Task<List<Category>> GetCategoriesAsync()
         {
             try
@@ -110,6 +116,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Get store by lease agreement id
         public async Task<Store> GetStoreByLeaseAgreementIdAsync(int id)
         {
             try
@@ -122,6 +129,8 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 throw;
             }
         }
+
+        // Get store by maintenance contract id
         public async Task<Store> GetStoreByMaintenanceContractIdAsync(int id)
         {
             try

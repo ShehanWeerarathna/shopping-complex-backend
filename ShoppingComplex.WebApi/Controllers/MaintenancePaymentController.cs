@@ -17,6 +17,7 @@ namespace ShoppingComplex.WebApi.Controllers
             _maintenancePaymentService = maintenancePaymentService;
         }
 
+        // Get all maintenance payments
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<MaintenancePaymentDto>>> GetMaintenancePaymentsAsync(int? currentPage, int? pageSize, int? maintenanceContractId)
         {
@@ -24,6 +25,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(maintenancePayments);
         }
 
+        // Get maintenance payment by id
         [HttpGet("{id}")]
         public async Task<ActionResult<MaintenancePaymentDto>> GetMaintenancePaymentByIdAsync(int id)
         {
@@ -35,6 +37,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(maintenancePayment);
         }
 
+        // Create a new maintenance payment
         [HttpPost]
         public async Task<ActionResult<MaintenancePaymentDto>> CreateMaintenancePaymentAsync(MaintenancePaymentDto maintenancePayment)
         {
@@ -42,6 +45,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return createdMaintenancePayment;
         }
 
+        // Update maintenance payment
         [HttpPut("{id}")]
         public async Task<ActionResult<MaintenancePaymentDto>> UpdateMaintenancePaymentAsync(int id, MaintenancePaymentDto maintenancePayment)
         {
@@ -54,6 +58,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(updatedMaintenancePayment);
         }
 
+        // Delete maintenance payment
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteMaintenancePaymentAsync(int id)
         {
@@ -65,6 +70,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(deletedMaintenancePaymentId);
         }
 
+        // Get maintenance payments by date range
         [HttpGet]
         public async Task<ActionResult<List<MaintenancePaymentDto>>> GetMaintenancePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
@@ -72,6 +78,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(maintenancePayments);
         }
 
+        // Get paged maintenance payments by date range
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<MaintenancePaymentDto>>> GetPagedMaintenancePaymentsByDateRange(DateTime startDate, DateTime endDate, int? currentPage, int? pageSize)
         {

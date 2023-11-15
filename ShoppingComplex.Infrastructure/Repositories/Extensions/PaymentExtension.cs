@@ -9,6 +9,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
 {
     internal static class PaymentExtension
     {
+        // Filter by AgreementId
         public static IQueryable<LeasePayment> FilterByLeaseAgreementId(this IQueryable<LeasePayment> payments, int? leaseAgreementId)
         {
             if (leaseAgreementId.HasValue && leaseAgreementId != 0)
@@ -17,6 +18,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Extensions
             return payments;
         }
 
+        // Filter by ContractId
         public static IQueryable<MaintenancePayment> FilterByMaintenanceContractId(this IQueryable<MaintenancePayment> payments, int? maintenanceContractId)
         {
             if (maintenanceContractId.HasValue && maintenanceContractId != 0)

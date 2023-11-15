@@ -16,6 +16,7 @@ namespace ShoppingComplex.WebApi.Controllers
             _storeService = storeService;
         }
 
+        // Get all stores
         [HttpGet]
         public async Task<ActionResult<PagedDataResponse<StoreDto>>> GetStoresAsync(string? searchTerm, int? currentPage, int? pageSize, int? categoryId)
         {
@@ -23,6 +24,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(stores);
         }
 
+        // Get store by id
         [HttpGet("{id}")]
         public async Task<ActionResult<StoreDto>> GetStoreByIdAsync(int id)
         {
@@ -34,6 +36,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(store);
         }
 
+        // Create store
         [HttpPost]
         public async Task<ActionResult<StoreDto>> CreateStoreAsync(StoreDto store)
         {
@@ -41,6 +44,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return createdStore;
         }
 
+        // Update store
         [HttpPut("{id}")]
         public async Task<ActionResult<StoreDto>> UpdateStoreAsync(int id, StoreDto store)
         {
@@ -53,6 +57,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(updatedStore);
         }
 
+        // Delete store
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteStoreAsync(int id)
         {
@@ -64,6 +69,7 @@ namespace ShoppingComplex.WebApi.Controllers
             return Ok(deletedStoreId);
         }
 
+        // Get all categories
         [HttpGet]
         public async Task<ActionResult<List<CategoryDto>>> GetCategoriesAsync()
         {

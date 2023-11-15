@@ -20,6 +20,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             _context = context;
         }
 
+        // Get all MaintenancePayments
         public async Task<List<MaintenancePayment>> GetMaintenancePaymentsAsync(int? maintenanceContractId)
         {
             IQueryable<MaintenancePayment> query = _context.MaintenancePayments.FilterByMaintenanceContractId(maintenanceContractId);
@@ -27,6 +28,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             return maintenancePayments;
         }
 
+        // Get MaintenancePayment by id
         public async Task<MaintenancePayment> GetMaintenancePaymentByIdAsync(int id)
         {
             try
@@ -44,6 +46,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Create MaintenancePayment
         public async Task<MaintenancePayment> CreateMaintenancePaymentAsync(MaintenancePayment maintenancePayment)
         {
             try
@@ -58,6 +61,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Update MaintenancePayment
         public async Task<MaintenancePayment> UpdateMaintenancePaymentAsync(MaintenancePayment maintenancePayment)
         {
             try
@@ -72,6 +76,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Delete MaintenancePayment
         public async Task<int> DeleteMaintenancePaymentAsync(int id)
         {
             try
@@ -90,6 +95,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             }
         }
 
+        // Get MaintenancePayments by storeId
         public async Task<List<MaintenancePayment>> GetMaintenancePaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
             try

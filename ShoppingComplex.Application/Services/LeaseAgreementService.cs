@@ -21,6 +21,7 @@ namespace ShoppingComplex.Application.Services
             _storeRepository = storeRepository;
         }
 
+        // Create a new lease agreement
         public async Task<LeaseAgreementDto> CreateLeaseAgreementAsync(LeaseAgreementDto leaseAgreement)
         {
             try
@@ -39,6 +40,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Delete lease agreement
         public async Task<int> DeleteLeaseAgreementAsync(int id)
         {
             try
@@ -52,12 +54,14 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get lease agreement by id
         public async Task<LeaseAgreementDto> GetLeaseAgreementByIdAsync(int id)
         {
             var leaseAgreement = await _leaseAgreementRepository.GetLeaseAgreementByIdAsync(id);
             return _mapper.Map<LeaseAgreementDto>(leaseAgreement);
         }
 
+        // Get all lease agreements
         public async Task<PagedDataResponse<LeaseAgreementDto>> GetLeaseAgreementsAsync(int? currentPage, int? pageSize, int? storeId)
         {
             try
@@ -74,6 +78,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Update lease agreement
         public async Task<LeaseAgreementDto> UpdateLeaseAgreementAsync(LeaseAgreementDto leaseAgreement)
         {
             var dbLeaseAgreement = await _leaseAgreementRepository.GetLeaseAgreementByIdAsync(leaseAgreement.LeaseAgreementId);
@@ -95,6 +100,7 @@ namespace ShoppingComplex.Application.Services
             }
         }
 
+        // Get lease agreement by store id
         public async Task<LeaseAgreementDto> GetLeaseAgreementByStoreIdAsync(int storeId)
         {
             var leaseAgreement = await _leaseAgreementRepository.GetLeaseAgreementByStoreIdAsync(storeId);
