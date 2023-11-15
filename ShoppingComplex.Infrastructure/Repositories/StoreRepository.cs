@@ -33,7 +33,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             return stores;
         }
 
-        public async Task<Store> GetStoreByIdAsync(int id)
+        public async Task<Store?> GetStoreByIdAsync(int id)
         {
             try
             {

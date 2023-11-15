@@ -29,7 +29,7 @@ namespace ShoppingComplex.Domain.DTOs
         {
             get
             {
-                return TotalCredit - TotalDebit;
+                return TotalDebit - TotalCredit;
             }
         }
     }

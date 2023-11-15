@@ -33,6 +33,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             {
                 var leasePayment = await _context.LeasePayments
                     .Include(lp => lp.LeaseAgreement)
+                    .ThenInclude(la => la.Store)
                     .FirstOrDefaultAsync(lp => lp.LeasePaymentId == id);
                 return leasePayment;
             }

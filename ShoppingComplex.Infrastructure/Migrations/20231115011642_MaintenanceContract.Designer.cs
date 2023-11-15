@@ -12,7 +12,7 @@ using ShoppingComplex.Infrastructure.Data;
 namespace ShoppingComplex.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231113052808_MaintenanceContract")]
+    [Migration("20231115011642_MaintenanceContract")]
     partial class MaintenanceContract
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,18 @@ namespace ShoppingComplex.Infrastructure.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Electronics"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Clothing"
+                        });
                 });
 
             modelBuilder.Entity("ShoppingComplex.Domain.Entities.LeaseAgreement", b =>

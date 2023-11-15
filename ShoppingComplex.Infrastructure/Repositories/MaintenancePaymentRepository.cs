@@ -33,6 +33,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
             {
                 var maintenancePayment = await _context.MaintenancePayments
                     .Include(mp => mp.MaintenanceContract)
+                    .ThenInclude(mc => mc.Store)
                     .FirstOrDefaultAsync(mp => mp.MaintenancePaymentId == id);
                 return maintenancePayment;
             }

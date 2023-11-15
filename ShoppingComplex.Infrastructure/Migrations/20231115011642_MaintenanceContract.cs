@@ -130,6 +130,16 @@ namespace ShoppingComplex.Infrastructure.Migrations
                         onDelete: ReferentialAction.SetNull);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 1, "Electronics" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 2, "Clothing" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_LeasePayments_LeaseAgreementId",
                 table: "LeasePayments",

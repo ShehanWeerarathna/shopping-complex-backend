@@ -22,6 +22,13 @@ namespace ShoppingComplex.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>().HasKey(c => c.CategoryId);
+
+            // Add initial data to the Category table
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Electronics" },
+                new Category { CategoryId = 2, CategoryName = "Clothing" }
+            );
             // Configure relationships
             modelBuilder.Entity<Category>()
                 .HasMany(c => c.Stores)
