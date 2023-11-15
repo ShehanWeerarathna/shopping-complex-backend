@@ -89,7 +89,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     _context.Stores.Remove(store);
                     return await _context.SaveChangesAsync();
                 }
-                return 0;
+                throw new Exception("This store has a contract");
             }
             catch (Exception)
             {

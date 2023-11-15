@@ -94,7 +94,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     _context.LeaseAgreements.Remove(leaseAgreement);
                     return await _context.SaveChangesAsync();
                 }
-                return 0;
+                throw new Exception("This agreement has payments");
             }
             catch (Exception)
             {

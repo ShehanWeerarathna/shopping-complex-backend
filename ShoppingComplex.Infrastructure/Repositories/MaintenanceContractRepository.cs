@@ -94,7 +94,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     _context.MaintenanceContracts.Remove(maintenanceContract);
                     return await _context.SaveChangesAsync();
                 }
-                return 0;
+                throw new Exception("This maintenance contract has payments");
             }
             catch (Exception)
             {
