@@ -13,6 +13,7 @@ namespace ShoppingComplex.Domain.Entities
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
         public decimal ContractAmount { get; set; }
+        public string? Description { get; set; }
 
         // Navigation property
         public Store Store { get; set; }

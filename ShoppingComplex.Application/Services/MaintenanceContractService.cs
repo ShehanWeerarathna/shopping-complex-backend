@@ -97,6 +97,7 @@ namespace ShoppingComplex.Application.Services
                 dbMaintenanceContract.ContractStartDate = maintenanceContract.ContractStartDate;
                 dbMaintenanceContract.ContractEndDate = maintenanceContract.ContractEndDate;
                 dbMaintenanceContract.ContractAmount = maintenanceContract.ContractAmount;
+                dbMaintenanceContract.Description = maintenanceContract.Description;
                 var updatedMaintenanceContract = await _maintenanceContractRepository.UpdateMaintenanceContractAsync(dbMaintenanceContract);
                 // update store maintenance contract id
                 var store = await _storeRepository.GetStoreByIdAsync(maintenanceContract.StoreId);

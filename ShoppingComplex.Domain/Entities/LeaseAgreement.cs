@@ -13,6 +13,7 @@ namespace ShoppingComplex.Domain.Entities
         public DateTime LeaseStartDate { get; set; }
         public DateTime LeaseEndDate { get; set; }
         public decimal LeaseAmount { get; set; }
+        public string? Description { get; set; }
 
         // Navigation property
         public Store Store { get; set; }

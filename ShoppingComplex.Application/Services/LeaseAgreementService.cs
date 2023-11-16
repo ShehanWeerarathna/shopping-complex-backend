@@ -91,6 +91,7 @@ namespace ShoppingComplex.Application.Services
                 dbLeaseAgreement.LeaseStartDate = leaseAgreement.LeaseStartDate;
                 dbLeaseAgreement.LeaseEndDate = leaseAgreement.LeaseEndDate;
                 dbLeaseAgreement.LeaseAmount = leaseAgreement.LeaseAmount;
+                dbLeaseAgreement.Description = leaseAgreement.Description;
                 var updatedLeaseAgreement = await _leaseAgreementRepository.UpdateLeaseAgreementAsync(dbLeaseAgreement);
                 // update store lease agreement id
                 var store = await _storeRepository.GetStoreByIdAsync(leaseAgreement.StoreId);

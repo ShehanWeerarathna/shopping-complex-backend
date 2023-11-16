@@ -13,6 +13,7 @@ namespace ShoppingComplex.Domain.DTOs
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
         public decimal ContractAmount { get; set; }
+        public string? Description { get; set; }
         public StoreDto? Store { get; set; }
         public virtual List<MaintenancePaymentDto> Payments { get; set; } = new List<MaintenancePaymentDto>();
     }

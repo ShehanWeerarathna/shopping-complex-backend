@@ -14,6 +14,7 @@ namespace ShoppingComplex.Domain.DTOs
         public DateTime LeaseStartDate { get; set; }
         public DateTime LeaseEndDate { get; set; }
         public decimal LeaseAmount { get; set; }
+        public string? Description { get; set; }
         public StoreDto? Store { get; set; }
         public virtual List<LeasePaymentDto> Payments { get; set; } = new List<LeasePaymentDto>();
     }
