@@ -126,7 +126,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
 
         public async Task<bool> GetOngoingContractsAvailabilityByStoreId(int storeId)
         {
-            bool ongoingContractsAvailability = await _context.MaintenanceContracts.AnyAsync(m => m.StoreId == storeId && m.ContractEndDate > DateTime.);
+            bool ongoingContractsAvailability = await _context.MaintenanceContracts.AnyAsync(m => m.StoreId == storeId && m.ContractEndDate > DateTime.Now);
             return ongoingContractsAvailability;
         }
     }
