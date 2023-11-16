@@ -15,5 +15,6 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         Task<MaintenanceContract> UpdateMaintenanceContractAsync(MaintenanceContract maintenanceContract);
         Task<int> DeleteMaintenanceContractAsync(int id);
         Task<MaintenanceContract?> GetMaintenanceContractByStoreIdAsync(int storeId);
+        Task<bool> GetOngoingContractsAvailabilityByStoreId(int storeId);
     }
 }

@@ -13,11 +13,15 @@ namespace ShoppingComplex.Application.Services
     {
         private readonly IStoreRepository _storeRepository;
         private readonly IMapper _mapper;
+        private readonly ILeaseAgreementRepository _leaseAgreementRepository;
+        private readonly IMaintenanceContractRepository _maintenanceContractRepository;
 
-        public StoreService(IStoreRepository storeRepository, IMapper mapper)
+        public StoreService(IStoreRepository storeRepository, IMapper mapper, ILeaseAgreementRepository leaseAgreementRepository, IMaintenanceContractRepository maintenanceContractRepository)
         {
             _storeRepository = storeRepository;
             _mapper = mapper;
+            _leaseAgreementRepository = leaseAgreementRepository;
+            _maintenanceContractRepository = maintenanceContractRepository;
         }
 
         // Create a new store
@@ -41,6 +45,12 @@ namespace ShoppingComplex.Application.Services
         {
             try
             {
+                bool ongoingLeaseAgreement = await _leaseAgreementRepository.GetOngoingAgreemetsAvailabilityByStoreId(id);
+                bool ongoingMaintenanceContract = await _maintenanceContractRepository.GetOngoingContractsAvailabilityByStoreId(id);
+                if (ongoingLeaseAgreement || ongoingMaintenanceContract)
+                {
+                    throw new Exception("Cannot delete store with ongoing lease agreement or maintenance contract");
+                }
                 var response = await _storeRepository.DeleteStoreAsync(id);
                 return response;
             }

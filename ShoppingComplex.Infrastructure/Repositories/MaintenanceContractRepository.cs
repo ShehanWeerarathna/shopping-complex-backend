@@ -94,12 +94,12 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 var maintenanceContract = _context.MaintenanceContracts.
                     Include(m => m.MaintenancePayments)
                     .FirstOrDefault(m => m.MaintenanceContractId == id);
-                if (maintenanceContract != null && maintenanceContract.MaintenancePayments.Count == 0)
+                if (maintenanceContract != null)
                 {
                     _context.MaintenanceContracts.Remove(maintenanceContract);
                     return await _context.SaveChangesAsync();
                 }
-                throw new Exception("This maintenance contract has payments");
+                return 0;
             }
             catch (Exception)
             {
@@ -122,6 +122,12 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public async Task<bool> GetOngoingContractsAvailabilityByStoreId(int storeId)
+        {
+            bool ongoingContractsAvailability = await _context.MaintenanceContracts.AnyAsync(m => m.StoreId == storeId && m.ContractEndDate > DateTime.);
+            return ongoingContractsAvailability;
         }
     }
 

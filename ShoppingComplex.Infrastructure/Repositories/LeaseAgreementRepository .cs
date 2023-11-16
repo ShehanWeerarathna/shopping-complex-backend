@@ -6,6 +6,7 @@ using ShoppingComplex.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,12 +94,12 @@ namespace ShoppingComplex.Infrastructure.Repositories
                 var leaseAgreement = _context.LeaseAgreements
                     .Include(l => l.LeasePayments)
                     .FirstOrDefault(l => l.LeaseAgreementId == id);
-                if (leaseAgreement != null && leaseAgreement.LeasePayments.Count==0)
+                if (leaseAgreement != null)
                 {
                     _context.LeaseAgreements.Remove(leaseAgreement);
                     return await _context.SaveChangesAsync();
                 }
-                throw new Exception("This agreement has payments");
+                return 0;
             }
             catch (Exception)
             {
@@ -115,6 +116,20 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     .Include(l => l.Store)
                     .FirstOrDefaultAsync(l => l.StoreId == storeId);
                 return leaseAgreement;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        public async Task<bool> GetOngoingAgreemetsAvailabilityByStoreId(int storeId)
+        {
+            try
+            {
+                bool AgreementAvailability = await _context.LeaseAgreements.AnyAsync(l => l.StoreId == storeId && l.LeaseEndDate > DateTime.Now);
+                return AgreementAvailability;
             }
             catch (Exception e)
             {

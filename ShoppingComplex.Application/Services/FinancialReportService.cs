@@ -55,7 +55,6 @@ namespace ShoppingComplex.Application.Services
 
                 });
             }
-            financialReport.Transactions.OrderBy(t => t.PaymentDate);
             return financialReport;
 
         }

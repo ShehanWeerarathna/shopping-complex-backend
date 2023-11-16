@@ -104,6 +104,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     .Include(mp => mp.MaintenanceContract)
                     .ThenInclude(mc => mc.Store)
                     .Where(mp => mp.PaymentDate >= startDate && mp.PaymentDate <= endDate)
+                    .OrderBy(mp => mp.PaymentDate)
                     .ToListAsync();
                 return maintenancePayments;
             }

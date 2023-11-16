@@ -3,6 +3,7 @@ using ShoppingComplex.Domain;
 using ShoppingComplex.Application;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingComplex.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

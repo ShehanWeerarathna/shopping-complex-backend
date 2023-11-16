@@ -87,14 +87,25 @@ namespace ShoppingComplex.Infrastructure.Repositories
         {
             try
             {
-                var store = _context.Stores
-                    .FirstOrDefault(s => s.StoreId == id);
-                if (store != null && store.MaintenanceContractId == null && store.LeaseAgreementId == null)
+               // Delete Store with its expired lease agreements maintence contracts and payments
+                var store = await _context.Stores
+                    .Include(s => s.LeaseAgreement)
+                    .ThenInclude(l => l.LeasePayments)
+                    .Include(s => s.MaintenanceContract)
+                    .ThenInclude(m => m.MaintenancePayments)
+                    .FirstOrDefaultAsync(s => s.StoreId == id);
+
+                if (store != null)
                 {
                     _context.Stores.Remove(store);
-                    return await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
+                    return store.StoreId;
                 }
-                throw new Exception("This store has a contract");
+                else
+                {
+                    throw new Exception("Store not found");
+                }
+            
             }
             catch (Exception)
             {

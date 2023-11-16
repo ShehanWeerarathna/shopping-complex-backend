@@ -15,5 +15,6 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         Task<LeaseAgreement> UpdateLeaseAgreementAsync(LeaseAgreement leaseAgreement);
         Task<int> DeleteLeaseAgreementAsync(int id);
         Task<LeaseAgreement?> GetLeaseAgreementByStoreIdAsync(int storeId);
+        Task<bool> GetOngoingAgreemetsAvailabilityByStoreId(int storeId);
     }
 }

@@ -104,6 +104,7 @@ namespace ShoppingComplex.Infrastructure.Repositories
                     .Include(lp => lp.LeaseAgreement)
                     .ThenInclude(la => la.Store)
                     .Where(lp => lp.PaymentDate >= startDate && lp.PaymentDate <= endDate)
+                    .OrderBy(lp => lp.PaymentDate)
                     .ToListAsync();
                 return leasePayments;
             }
