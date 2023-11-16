@@ -40,7 +40,7 @@ namespace ShoppingComplex.Application.Services
                     Amount = payment.Amount,
                     IsCredit = false,
                     PaymentDate = payment.PaymentDate,
-                    Description = $"Lease Payment for {payment.LeaseAgreement.Store.StoreName}"
+                    Description = $"Lease Payment for {payment.LeaseAgreement?.Store?.StoreName}"
 
                 });
             }
@@ -51,7 +51,7 @@ namespace ShoppingComplex.Application.Services
                     Amount = payment.Amount,
                     IsCredit = true,
                     PaymentDate = payment.PaymentDate,
-                    Description = $"Maintenance Payment for {payment.MaintenanceContract.Store.StoreName}"
+                    Description = $"Maintenance Payment for {payment.MaintenanceContract?.Store?.StoreName}"
 
                 });
             }
